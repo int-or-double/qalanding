@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Engineer | Игорь Акимов</title>
+    <style>
+        /* ===== Сброс стилей и базовые настройки ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== Цветовая схема ===== */
+        :root {
+            --primary: #2563eb;       /* Синий */
+            --primary-dark: #1d4ed8;
+            --accent: #f59e0b;        /* Оранжевый акцент */
+            --bg-light: #ffffff;
+            --bg-section: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --success: #10b981;
+        }
+
+        /* ===== Типографика ===== */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== Кнопки ===== */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ===== Хедер / Hero ===== */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 500px;
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .hero-content .highlight {
+            color: var(--accent);
+        }
+
+        .hero-content p {
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            max-width: 550px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+        }
+
+        .hero-stat .label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .hero-photo {
+            flex: 0 0 280px;
+            text-align: center;
+        }
+
+        .hero-photo img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* ===== Секции ===== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background-color: var(--bg-section);
+        }
+
+        /* ===== Навыки ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .skill-card ul li {
+            padding: 4px 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-card ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        /* ===== Кейсы ===== */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .case-card:hover {
+            box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+            border-color: var(--primary);
+        }
+
+        .case-card .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .case-card .result {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .case-card .result span {
+            color: var(--text-dark);
+        }
+
+        /* ===== Софт скиллы ===== */
+        .soft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .soft-item {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .soft-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .soft-item p {
+            font-size: 0.95rem;
+        }
+
+        /* ===== Отзывы ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .testimonial-card .quote {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .author img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 600;
+        }
+
+        .testimonial-card .author .role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== Контакты / Футер ===== */
+        .contact-section {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: white;
+        }
+
+        .contact-section p {
+            color: #94a3b8;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            background: #0f172a;
+            color: #64748b;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* ===== Адаптивность ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .hero .container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 0 auto;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-photo img {
+                width: 200px;
+                height: 200px;
+            }
+            .section {
+                padding: 50px 0;
+            }
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.7rem;
+            }
+            .hero-stat .number {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Нахожу баги, которые <span class="highlight">ломают пользовательский опыт</span></h1>
+                <p>QA Engineer (Manual + Auto) с 3+ годами опыта. Помогаю командам выпускать стабильные релизы без сюрпризов в проде.</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">500+</span>
+                        <span class="label">Найденных багов</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">100+</span>
+                        <span class="label">Автотестов</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">15</span>
+                        <span class="label">Успешных релизов</span>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Связаться в Telegram</a>
+                    <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Скачать резюме (PDF)</a>
+                </div>
+            </div>
+
+            <div class="hero-photo">
+                <!-- Замените src на своё фото. Можно использовать заглушку -->
+                <img src="https://i.pravatar.cc/300?img=12" alt="Фото QA инженера">
+            </div>
+        </div>
+    </section>
+
+	<!-- ===== НАВЫКИ ===== -->
+	<section class="section">
+		<div class="container">
+			<h2>Мои суперсилы</h2>
+			<div class="skills-grid">
+				
+				<!-- 1. ТЕСТ-ДИЗАЙН -->
+				<div class="skill-card">
+					<div class="icon">🧪</div>
+					<h3>Тест-дизайн</h3>
+					
+					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
+					<ul>
+						<li>Эквивалентное разделение</li>
+						<li>Анализ граничных значений</li>
+						<li>Попарное тестирование (Pairwise)</li>
+						<li>Таблицы решений</li>
+						<li>Тестирование состояний и переходов</li>
+					</ul>
+
+					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Изучаю и применяю:</p>
+					<ul>
+						<li>Тестирование на основе сценариев использования (Use Case)</li>
+						<li>Классы эквивалентности для сложных бизнес-логик</li>
+						<li>Техники для тестирования API (комбинаторика запросов)</li>
+					</ul>
+
+					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+						<p style="font-size: 0.85rem; color: #475569;">
+							📚 Сейчас: прохожу курс "Глубокий тест-дизайн" на Stepik, 
+							применяю техники на pet-проекте.
+						</p>
+					</div>
+				</div>
+
+				<!-- 2. АВТОМАТИЗАЦИЯ -->
+				<div class="skill-card">
+					<div class="icon">🤖</div>
+					<h3>Автоматизация</h3>
+					
+					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
+					<ul>
+						<li>Selenide / Selenium WebDriver (Java)</li>
+						<li>REST Assured (API-тесты)</li>
+						<li>Postman (коллекции, автоматизация, тесты)</li>
+						<li>Git, базовый CI/CD (GitLab CI, Jenkins)</li>
+						<li>Allure (подготовка отчётов)</li>
+					</ul>
+
+					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Активно изучаю:</p>
+					<ul>
+						<li>Playwright (TypeScript) — пишу pet-проект</li>
+						<li>Cypress (JavaScript) — прохожу курс</li>
+						<li>Docker (контейнеризация тестов)</li>
+						<li>K6 (нагрузочное тестирование)</li>
+					</ul>
+
+					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+						<p style="font-size: 0.85rem; color: #475569;">
+							🔨 Pet-проект: <a href="https://github.com/your-github/playwright-demoqa" target="_blank" style="color: #2563eb;">Автотесты для demoqa.com</a> 
+							(Playwright + TS, 30+ тестов, Allure-отчёты)
+						</p>
+					</div>
+				</div>
+
+				<!-- 3. API & ИНСТРУМЕНТЫ -->
+				<div class="skill-card">
+					<div class="icon">🔌</div>
+					<h3>API & Инструменты</h3>
+					
+					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
+					<ul>
+						<li>Postman (коллекции, переменные, тесты)</li>
+						<li>Swagger / OpenAPI (чтение документации)</li>
+						<li>SQL (SELECT, JOIN, подзапросы, агрегации)</li>
+						<li>Git (ветки, merge, rebase)</li>
+						<li>DevTools (Network, Console, Sources)</li>
+						<li>Charles / Fiddler (перехват трафика)</li>
+					</ul>
+
+					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Изучаю:</p>
+					<ul>
+						<li>GraphQL (базовые запросы, тестирование)</li>
+						<li>gRPC (понимание протокола)</li>
+						<li>Kibana / Grafana (анализ логов)</li>
+						<li>Linux (базовые команды, работа с сервером)</li>
+					</ul>
+
+					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+						<p style="font-size: 0.85rem; color: #475569;">
+							📚 Планирую: освоить GraphQL до конца квартала, 
+							написать статью про сравнение REST vs GraphQL для тестировщиков.
+						</p>
+					</div>
+				</div>
+
+				<!-- 4. ПРОЦЕССЫ -->
+				<div class="skill-card">
+					<div class="icon">📋</div>
+					<h3>Процессы & Софт-скиллы</h3>
+					
+					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
+					<ul>
+						<li>Jira (настройка досок, баг-трекинг)</li>
+						<li>TestRail / Qase (тест-кейсы, планы)</li>
+						<li>Agile / Scrum (участие в церемониях)</li>
+						<li>Составление чек-листов и тест-планов</li>
+						<li>Баг-репорты (Gherkin, Given/When/Then)</li>
+						<li>Работа с требованиями (анализ, уточнение)</li>
+					</ul>
+
+					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Развиваю:</p>
+					<ul>
+						<li>Тест-менеджмент (организация процесса)</li>
+						<li>Метрики тестирования (DRE, плотность багов)</li>
+						<li>Risk-based testing (приоритизация)</li>
+						<li>Английский: технический (пишу баг-репорты на EN)</li>
+					</ul>
+
+					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+						<p style="font-size: 0.85rem; color: #475569;">
+							🎯 Цель: через 3 месяца уверенно вести тест-план 
+							для中型ного проекта и презентовать метрики команде.
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+    <!-- ===== КЕЙСЫ ===== -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>Кейсы, которыми горжусь</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <span class="tag">Manual</span>
+                    <h3>Интернет-магазин мебели</h3>
+                    <p><strong>Задача:</strong> Тестирование корзины и платёжного шлюза.</p>
+                    <p><strong>Действия:</strong> Провёл кросс-браузерное тестирование, написал 40+ чек-листов, нашёл критический баг с двойным списанием.</p>
+                    <div class="result">✅ Результат: <span>Предотвратил убытки ~$10k, баг исправлен до релиза</span></div>
+                </div>
+                <div class="case-card">
+                    <span class="tag">Auto</span>
+                    <h3>Мобильное приложение банка</h3>
+                    <p><strong>Задача:</strong> Автоматизация регресс-тестирования авторизации.</p>
+                    <p><strong>Действия:</strong> Написал 50 UI-тестов на Playwright, интегрировал в CI/CD пайплайн.</p>
+                    <div class="result">✅ Результат: <span>Время регресса сократилось с 4 часов до 15 минут</span></div>
+                </div>
+                <div class="case-card">
+                    <span class="tag">API</span>
+                    <h3>Сервис доставки еды</h3>
+                    <p><strong>Задача:</strong> Валидация REST API микросервисов.</p>
+                    <p><strong>Действия:</strong> Написал автотесты на Rest Assured, настроил мониторинг в Grafana.</p>
+                    <div class="result">✅ Результат: <span>Выявил 12 критических багов на этапе интеграции</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== МЯГКИЕ НАВЫКИ ===== -->
+    <section class="section">
+        <div class="container">
+            <h2>Почему со мной комфортно работать</h2>
+            <div class="soft-grid">
+                <div class="soft-item">
+                    <h3>🗣️ Коммуникация</h3>
+                    <p>Понятно завожу баги, аргументирую приоритеты разработчикам без конфликтов. Работаю в команде как единое целое.</p>
+                </div>
+                <div class="soft-item">
+                    <h3>🧠 Критическое мышление</h3>
+                    <p>Нахожу узкие места в требованиях ещё до начала разработки. Предлагаю решения, а не просто проблемы.</p>
+                </div>
+                <div class="soft-item">
+                    <h3>⏱️ Ответственность</h3>
+                    <p>Никогда не пропускаю баг в прод, если он влияет на пользователя. Горжусь качеством своей работы.</p>
+                </div>
+                <div class="soft-item">
+                    <h3>📚 Обучаемость</h3>
+                    <p>Постоянно изучаю новые инструменты. Владею английским на уровне B2, читаю техническую документацию.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ОТЗЫВЫ ===== -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>Что говорят коллеги</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="quote">"Лучший QA, с которым я работал. Баги всегда воспроизводимые, а отчёты — прозрачные. Настоящий командный игрок."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/100?img=33" alt="Аватар">
+                        <div>
+                            <div class="name">Алексей Смирнов</div>
+                            <div class="role">Team Lead, Ozon</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Очень внимательный к деталям. Нашёл баги, которые мы пропустили на код-ревью. Спас релиз перед дедлайном."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/100?img=47" alt="Аватар">
+                        <div>
+                            <div class="name">Екатерина Иванова</div>
+                            <div class="role">Senior Developer, Tinkoff</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"С ним приятно работать: всегда на связи, быстро разбирается в новой функциональности. Рекомендую!"</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/100?img=53" alt="Аватар">
+                        <div>
+                            <div class="name">Дмитрий Орлов</div>
+                            <div class="role">Product Manager, Skyeng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== КОНТАКТЫ ===== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>Давайте работать вместе</h2>
+            <p>Ищете QA-инженера, который не просто находит баги, а помогает делать продукт лучше? Напишите мне!</p>
+            <div class="contact-links">
+                <a href="https://t.me/your_telegram" target="_blank">✈️ Telegram</a>
+                <a href="mailto:qa@example.com">📧 Email</a>
+                <a href="https://linkedin.com/in/your-profile" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/your-github" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer-bottom">
+        <div class="container">
+            <p>© 2025 Ваше Имя · QA Engineer. Всегда открыт к интересным предложениям.</p>
+        </div>
+    </footer>
+	<script>
+	// ===== ЛОГИКА КНОПКИ "БЕЗ QA" =====
+	document.addEventListener('DOMContentLoaded', function() {
+		
+		// Создаем кнопку
+		const bugButton = document.createElement('div');
+		bugButton.id = 'bug-toggle';
+		bugButton.innerHTML = '🐛 Показать, что было бы без QA';
+		bugButton.style.cssText = `
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			z-index: 9999;
+			background: #ef4444;
+			color: white;
+			padding: 16px 28px;
+			border-radius: 50px;
+			cursor: pointer;
+			font-weight: 600;
+			font-size: 1rem;
+			box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+			transition: all 0.3s ease;
+			border: none;
+			font-family: 'Inter', sans-serif;
+			animation: pulse-button 2s infinite;
+		`;
+		
+		// Стили для анимации кнопки
+		const style = document.createElement('style');
+		style.textContent = `
+			@keyframes pulse-button {
+				0%, 100% { transform: scale(1); }
+				50% { transform: scale(1.05); }
+			}
+			#bug-toggle:hover {
+				transform: scale(1.1) !important;
+				box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6) !important;
+				animation: none !important;
+			}
+			.qa-broken {
+				transition: all 0.5s ease !important;
+			}
+			.qa-broken img {
+				filter: grayscale(100%) blur(2px) !important;
+				transform: rotate(2deg) scale(0.95) !important;
+				transition: all 0.5s ease !important;
+			}
+			.qa-broken h1, .qa-broken h2, .qa-broken h3 {
+				font-family: 'Comic Sans MS', cursive !important;
+				color: #dc2626 !important;
+				text-shadow: 2px 2px 0 #000 !important;
+				transform: skewX(-3deg) !important;
+			}
+			.qa-broken p {
+				color: #6b7280 !important;
+				opacity: 0.7 !important;
+			}
+			.qa-broken .btn {
+				pointer-events: none !important;
+				opacity: 0.5 !important;
+				transform: scale(0.9) !important;
+			}
+			.qa-broken .skill-card {
+				border: 3px dashed #ef4444 !important;
+				background: #fef2f2 !important;
+				transform: rotate(-1deg) !important;
+			}
+			.qa-broken .case-card {
+				border: 3px dashed #ef4444 !important;
+				background: #fef2f2 !important;
+			}
+			.qa-broken .hero {
+				background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%) !important;
+			}
+			.qa-broken .hero h1 {
+				color: #fca5a5 !important;
+			}
+			.qa-broken .hero p {
+				color: #fecaca !important;
+			}
+			.qa-broken .hero-stats .number {
+				color: #ef4444 !important;
+				animation: blink-error 1s infinite !important;
+			}
+			@keyframes blink-error {
+				0%, 100% { opacity: 1; }
+				50% { opacity: 0.3; }
+			}
+			.qa-broken a {
+				color: #dc2626 !important;
+				text-decoration: line-through !important;
+			}
+			.qa-broken .contact-links a {
+				background: rgba(220, 38, 38, 0.2) !important;
+				border: 1px solid #ef4444 !important;
+			}
+			.qa-broken .testimonial-card {
+				border-left: 5px solid #ef4444 !important;
+				background: #fef2f2 !important;
+			}
+			.qa-broken .soft-item {
+				border: 2px dashed #ef4444 !important;
+				background: #fef2f2 !important;
+			}
+			.qa-broken .skill-card ul li::before {
+				content: '✗' !important;
+				color: #ef4444 !important;
+			}
+			.qa-broken .section-alt {
+				background: #fef2f2 !important;
+			}
+			.qa-broken .hero-photo img {
+				border: 4px solid #ef4444 !important;
+				filter: grayscale(100%) contrast(200%) !important;
+			}
+			/* Стили для "сломанных" кейсов */
+			.qa-broken .case-card .tag {
+				background: #fecaca !important;
+				color: #dc2626 !important;
+			}
+			.qa-broken .case-card .result {
+				color: #dc2626 !important;
+				border-top-color: #fecaca !important;
+			}
+			.qa-broken .case-card .result span {
+				color: #991b1b !important;
+			}
+		`;
+		document.head.appendChild(style);
+		
+		document.body.appendChild(bugButton);
+		
+		let isBroken = false;
+		
+		// Сохраняем оригинальное содержимое секции кейсов
+		const casesSection = document.querySelector('.section-alt .container');
+		const originalCasesHTML = casesSection ? casesSection.innerHTML : '';
+		
+		// Создаем "сломанную" версию кейсов
+		const brokenCasesHTML = `
+			<h2 style="color: #dc2626; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);">💸 Выгода, которую упустили</h2>
+			<div class="cases-grid">
+				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
+					<h3>Интернет-магазин мебели</h3>
+					<p><strong>Что пошло не так:</strong> Баг с двойным списанием ушёл в прод.</p>
+					<p><strong>Последствия:</strong> 47 клиентов потеряли деньги. Юридические иски на $120k. Репутация уничтожена. Магазин закрылся через 3 месяца.</p>
+					<div class="result" style="color: #dc2626;">💀 Убытки: <span style="color: #991b1b;">$120k + потеря бизнеса</span></div>
+				</div>
+				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
+					<h3>Мобильное приложение банка</h3>
+					<p><strong>Что пошло не так:</strong> Регресс не автоматизирован, ручное тестирование пропустило критический баг.</p>
+					<p><strong>Последствия:</strong> Приложение падало при входе у 30% пользователей. Рейтинг упал с 4.8 до 2.1. Отток клиентов — 15% за неделю.</p>
+					<div class="result" style="color: #dc2626;">💀 Потери: <span style="color: #991b1b;">-15% клиентов, репутационный ущерб</span></div>
+				</div>
+				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
+					<h3>Сервис доставки еды</h3>
+					<p><strong>Что пошло не так:</strong> API не протестирован, микросервисы не синхронизированы.</p>
+					<p><strong>Последствия:</strong> Заказы не доставлялись, деньги списывались, но еда не приходила. 200+ жалоб в поддержку за день. Штраф от партнёров.</p>
+					<div class="result" style="color: #dc2626;">💀 Убытки: <span style="color: #991b1b;">$50k штрафов + потеря партнёров</span></div>
+				</div>
+			</div>
+		`;
+		
+		bugButton.addEventListener('click', function() {
+			isBroken = !isBroken;
+			
+			if (isBroken) {
+				// Включаем "сломанную" версию
+				document.body.classList.add('qa-broken');
+				bugButton.innerHTML = '✨ Вернуть качество (QA on)';
+				bugButton.style.background = '#10b981';
+				bugButton.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.4)';
+				
+				// Меняем содержимое секции кейсов
+				if (casesSection) {
+					casesSection.innerHTML = brokenCasesHTML;
+				}
+				
+				// Добавляем "плавающие" баги
+				showFloatingBugs();
+				
+			} else {
+				// Возвращаем нормальную версию
+				document.body.classList.remove('qa-broken');
+				bugButton.innerHTML = '🐛 Показать, что было бы без QA';
+				bugButton.style.background = '#ef4444';
+				bugButton.style.boxShadow = '0 8px 24px rgba(239, 68, 68, 0.4)';
+				
+				// Восстанавливаем оригинальное содержимое кейсов
+				if (casesSection) {
+					casesSection.innerHTML = originalCasesHTML;
+				}
+				
+				// Удаляем плавающие баги
+				removeFloatingBugs();
+			}
+		});
+		
+		// Функция для создания "плавающих" багов
+		function showFloatingBugs() {
+			const bugs = [
+				'💥 404', '⚠️ CRITICAL', '🐞 BUG', '❗️ ERROR', 
+				'💀 NULL', '🔥 500', '⚠️ WARNING', '💢 FAIL',
+				'💰 LOST', '💸 MONEY', '📉 METRICS', '🚫 DEADLINE'
+			];
+			
+			for (let i = 0; i < 15; i++) {
+				const bug = document.createElement('div');
+				bug.className = 'floating-bug';
+				bug.textContent = bugs[Math.floor(Math.random() * bugs.length)];
+				bug.style.cssText = `
+					position: fixed;
+					z-index: 9998;
+					font-weight: 800;
+					font-size: ${14 + Math.random() * 20}px;
+					color: #ef4444;
+					background: rgba(239, 68, 68, 0.1);
+					padding: 6px 14px;
+					border-radius: 8px;
+					border: 2px solid #ef4444;
+					pointer-events: none;
+					animation: float-bug ${3 + Math.random() * 4}s ease-in-out infinite;
+					left: ${Math.random() * 90}%;
+					top: ${Math.random() * 90}%;
+					opacity: 0.8;
+					transform: rotate(${Math.random() * 30 - 15}deg);
+				`;
+				document.body.appendChild(bug);
+			}
+			
+			// Добавляем стили для анимации
+			const bugStyle = document.createElement('style');
+			bugStyle.id = 'bug-animation-style';
+			bugStyle.textContent = `
+				@keyframes float-bug {
+					0%, 100% { 
+						transform: translateY(0) rotate(0deg); 
+						opacity: 0.8;
+					}
+					25% { 
+						transform: translateY(-30px) rotate(5deg); 
+						opacity: 1;
+					}
+					50% { 
+						transform: translateY(0) rotate(-5deg); 
+						opacity: 0.6;
+					}
+					75% { 
+						transform: translateY(20px) rotate(3deg); 
+						opacity: 0.9;
+					}
+				}
+			`;
+			document.head.appendChild(bugStyle);
+		}
+		
+		function removeFloatingBugs() {
+			const bugs = document.querySelectorAll('.floating-bug');
+			bugs.forEach(bug => bug.remove());
+			const bugStyle = document.getElementById('bug-animation-style');
+			if (bugStyle) bugStyle.remove();
+		}
+	});
+	</script>
+
+</body>
+</html>
