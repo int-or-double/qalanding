@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QA Engineer | Игорь Акимов</title>
-    <link rel="icon" href="favicon.ico">    
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109961346', 'ym');
+    <link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
 
-        ym(109961346, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/109961346" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->    
     <style>
         /* ===== Сброс стилей и базовые настройки ===== */
         * {
@@ -45,9 +33,9 @@
 
         /* ===== Цветовая схема ===== */
         :root {
-            --primary: #2563eb;       /* Синий */
+            --primary: #2563eb;
             --primary-dark: #1d4ed8;
-            --accent: #f59e0b;        /* Оранжевый акцент */
+            --accent: #f59e0b;
             --bg-light: #ffffff;
             --bg-section: #f1f5f9;
             --text-dark: #0f172a;
@@ -491,197 +479,234 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* ===== Переключатель языков ===== */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 10px 16px;
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .lang-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                gap: 4px;
+            }
+            .lang-btn {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- ===== ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ ===== -->
+    <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+    </div>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Нахожу баги, которые <span class="highlight">ломают пользовательский опыт</span></h1>
-                <p>QA Engineer (Manual + Auto) с 3+ годами опыта. Помогаю командам выпускать стабильные релизы без сюрпризов в проде.</p>
+                <h1 data-i18n="hero_title">Нахожу баги, которые <span class="highlight">ломают пользовательский опыт</span></h1>
+                <p data-i18n="hero_subtitle">QA Engineer (Manual + Auto) с 3+ годами опыта. Помогаю командам выпускать стабильные релизы без сюрпризов в проде.</p>
                 
                 <div class="hero-stats">
                     <div class="hero-stat">
                         <span class="number">500+</span>
-                        <span class="label">Найденных багов</span>
+                        <span class="label" data-i18n="stat_bugs">Найденных багов</span>
                     </div>
                     <div class="hero-stat">
                         <span class="number">100+</span>
-                        <span class="label">Автотестов</span>
+                        <span class="label" data-i18n="stat_tests">Автотестов</span>
                     </div>
                     <div class="hero-stat">
                         <span class="number">10</span>
-                        <span class="label">Успешных релизов</span>
+                        <span class="label" data-i18n="stat_releases">Успешных релизов</span>
                     </div>
                 </div>
 
                 <div class="hero-actions">
-                    <a href="https://t.me/igoraki" class="btn btn-primary">Связаться в Telegram</a>
-                    <a href="Igor Akimov - QA Engineer Manual Junior+.pdf" class="btn btn-outline" style="border-color: white; color: white;">Скачать резюме (PDF)</a>
+                    <a href="https://t.me/igoraki" class="btn btn-primary" data-i18n="btn_contact">Связаться в Telegram</a>
+                    <a href="Igor Akimov - QA Engineer Manual Junior+.pdf" class="btn btn-outline" style="border-color: white; color: white;" data-i18n="btn_resume">Скачать резюме (PDF)</a>
                 </div>
             </div>
 
             <div class="hero-photo">
-                <img src="my-photo.jpeg" alt="Фото лучшего в мире QA инженера - от скромности не помру">
+                <img src="my-photo.jpeg" alt="Фото QA инженера">
             </div>
         </div>
     </section>
 
-	<!-- ===== НАВЫКИ ===== -->
-	<section class="section">
-		<div class="container">
-			<h2>Мои суперсилы</h2>
-			<div class="skills-grid">
-				
-				<!-- 1. ТЕСТ-ДИЗАЙН -->
-				<div class="skill-card">
-					<div class="icon">🧪</div>
-					<h3>Тест-дизайн</h3>
-					
-					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
-					<ul>
-						<li>Эквивалентное разделение</li>
-						<li>Анализ граничных значений</li>
-						<li>Попарное тестирование (Pairwise)</li>
-						<li>Таблицы решений</li>
-						<li>Тестирование состояний и переходов</li>
-					</ul>
+    <!-- ===== НАВЫКИ ===== -->
+    <section class="section">
+        <div class="container">
+            <h2 data-i18n="skills_title">Мои суперсилы</h2>
+            <div class="skills-grid">
+                <!-- 1. ТЕСТ-ДИЗАЙН -->
+                <div class="skill-card">
+                    <div class="icon">🧪</div>
+                    <h3 data-i18n="skill_design_title">Тест-дизайн</h3>
+                    <p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;" data-i18n="skill_confident">✅ Уверенно работаю:</p>
+                    <ul>
+                        <li data-i18n="skill_design_1">Эквивалентное разделение</li>
+                        <li data-i18n="skill_design_2">Анализ граничных значений</li>
+                        <li data-i18n="skill_design_3">Попарное тестирование (Pairwise)</li>
+                        <li data-i18n="skill_design_4">Таблицы решений</li>
+                        <li data-i18n="skill_design_5">Тестирование состояний и переходов</li>
+                    </ul>
+                    <p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;" data-i18n="skill_learning">📖 Изучаю и применяю:</p>
+                    <ul>
+                        <li data-i18n="skill_design_6">Тестирование на основе сценариев использования (Use Case)</li>
+                        <li data-i18n="skill_design_7">Классы эквивалентности для сложных бизнес-логик</li>
+                        <li data-i18n="skill_design_8">Техники для тестирования API (комбинаторика запросов)</li>
+                    </ul>
+                    <div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+                        <p style="font-size: 0.85rem; color: #475569;" data-i18n="skill_design_note">📚 Сейчас: прохожу курс "Глубокий тест-дизайн" на Stepik.</p>
+                    </div>
+                </div>
 
-					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Изучаю и применяю:</p>
-					<ul>
-						<li>Тестирование на основе сценариев использования (Use Case)</li>
-						<li>Классы эквивалентности для сложных бизнес-логик</li>
-						<li>Техники для тестирования API (комбинаторика запросов)</li>
-					</ul>
+                <!-- 2. АВТОМАТИЗАЦИЯ -->
+                <div class="skill-card">
+                    <div class="icon">🤖</div>
+                    <h3 data-i18n="skill_auto_title">Автоматизация</h3>
+                    <p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;" data-i18n="skill_confident">✅ Уверенно работаю:</p>
+                    <ul>
+                        <li data-i18n="skill_auto_1">Postman (коллекции, автоматизация, тесты)</li>
+                        <li data-i18n="skill_auto_2">Git,</li>
+                        <li data-i18n="skill_auto_3">Базовый Docker (контейнеризация тестов)</li>
+                    </ul>
+                    <p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;" data-i18n="skill_learning_active">📖 Активно изучаю:</p>
+                    <ul>
+                        <li data-i18n="skill_auto_4">Selenium WebDriver</li>
+                        <li data-i18n="skill_auto_5">Allure (подготовка отчётов) - изучаю</li>
+                        <li data-i18n="skill_auto_6">Playwright (TypeScript) — в планах</li>
+                        <li data-i18n="skill_auto_7">Вникаю в CI/CD (Jenkins)</li>
+                    </ul>
+                    <div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+                        <p style="font-size: 0.85rem; color: #475569;" data-i18n="skill_auto_note">🔨 В ближайшее время pet-проект: Автотесты для demoqa.com (Playwright + TS, 30+ тестов, Allure-отчёты)</p>
+                    </div>
+                </div>
 
-					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
-						<p style="font-size: 0.85rem; color: #475569;">
-							📚 Сейчас: прохожу курс "Глубокий тест-дизайн" на Stepik.
-						</p>
-					</div>
-				</div>
+                <!-- 3. API & ИНСТРУМЕНТЫ -->
+                <div class="skill-card">
+                    <div class="icon">🔌</div>
+                    <h3 data-i18n="skill_api_title">API & Инструменты</h3>
+                    <p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;" data-i18n="skill_confident">✅ Уверенно работаю:</p>
+                    <ul>
+                        <li data-i18n="skill_api_1">Postman (коллекции, переменные, тесты)</li>
+                        <li data-i18n="skill_api_2">Swagger / OpenAPI (чтение документации)</li>
+                        <li data-i18n="skill_api_3">SQL (SELECT, JOIN, подзапросы, агрегации)</li>
+                        <li data-i18n="skill_api_4">Git (push, pull, fetch)</li>
+                        <li data-i18n="skill_api_5">DevTools (Network, Console, Sources)</li>
+                        <li data-i18n="skill_api_6">Charles / Fiddler (перехват трафика)</li>
+                        <li data-i18n="skill_api_7">Linux (базовые команды, работа с сервером)</li>
+                    </ul>
+                    <p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;" data-i18n="skill_learning">📖 Изучаю:</p>
+                    <ul>
+                        <li data-i18n="skill_api_8">GraphQL (базовые запросы, тестирование)</li>
+                        <li data-i18n="skill_api_9">gRPC (понимание протокола)</li>
+                        <li data-i18n="skill_api_10">Kibana / Grafana (анализ логов)</li>
+                    </ul>
+                    <div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+                        <p style="font-size: 0.85rem; color: #475569;" data-i18n="skill_api_note">📚 Планирую: освоить GraphQL до конца осени.</p>
+                    </div>
+                </div>
 
-				<!-- 2. АВТОМАТИЗАЦИЯ -->
-				<div class="skill-card">
-					<div class="icon">🤖</div>
-					<h3>Автоматизация</h3>
-					
-					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
-					<ul>
-						
-						<li>Postman (коллекции, автоматизация, тесты)</li>
-						<li>Git,</li>
-                        <li>Базовый Docker (контейнеризация тестов)</li>
-						
-					</ul>
-
-					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Активно изучаю:</p>
-					<ul>
-                        <li>Selenium WebDriver</li>
-                        <li>Allure (подготовка отчётов) - изучаю</li>
-						<li>Playwright (TypeScript) — в планах</li>							
-                        <li>Вникаю в CI/CD (Jenkins)</li>					
-					</ul>
-
-					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
-						<p style="font-size: 0.85rem; color: #475569;">
-							🔨 В ближайшее время pet-проект: <a href="https://github.com/your-github/playwright-demoqa" target="_blank" style="color: #2563eb;">Автотесты для demoqa.com</a> 
-							(Playwright + TS, 30+ тестов, Allure-отчёты)
-						</p>
-					</div>
-				</div>
-
-				<!-- 3. API & ИНСТРУМЕНТЫ -->
-				<div class="skill-card">
-					<div class="icon">🔌</div>
-					<h3>API & Инструменты</h3>
-					
-					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
-					<ul>
-						<li>Postman (коллекции, переменные, тесты)</li>
-						<li>Swagger / OpenAPI (чтение документации)</li>
-						<li>SQL (SELECT, JOIN, подзапросы, агрегации)</li>
-						<li>Git (push, pull, fetch)</li>
-						<li>DevTools (Network, Console, Sources)</li>
-						<li>Charles / Fiddler (перехват трафика)</li>
-                        <li>Linux (базовые команды, работа с сервером)</li>
-					</ul>
-
-					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Изучаю:</p>
-					<ul>
-						<li>GraphQL (базовые запросы, тестирование)</li>
-						<li>gRPC (понимание протокола)</li>
-						<li>Kibana / Grafana (анализ логов)</li>						
-					</ul>
-
-					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
-						<p style="font-size: 0.85rem; color: #475569;">
-							📚 Планирую: освоить GraphQL до конца осени.
-						</p>
-					</div>
-				</div>
-
-				<!-- 4. ПРОЦЕССЫ -->
-				<div class="skill-card">
-					<div class="icon">📋</div>
-					<h3>Процессы & Софт-скиллы</h3>
-					
-					<p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;">✅ Уверенно работаю:</p>
-					<ul>
-						<li>Jira (настройка досок, баг-трекинг)</li>						
-						<li>Составление чек-листов и тест-планов</li>
-						<li>Баг-репорты (Gherkin, Given/When/Then)</li>
-						<li>Работа с требованиями (анализ, уточнение)</li>
-                        <li>Тест-менеджмент (организация процесса)</li>
-					</ul>
-
-					<p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;">📖 Развиваю:</p>
-					<ul>
-						<li>TestRail / Qase (тест-кейсы, планы)</li>
-						<li>Agile</li>
-						<li>Метрики тестирования (DRE, плотность багов)</li>
-						<li>Risk-based testing (приоритизация)</li>
-						<li>Английский: пока A2, процесс изучения идёт</li>
-					</ul>
-
-					<div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
-						<p style="font-size: 0.85rem; color: #475569;">
-							🎯 Цель: писать техдокументацию на EN
-						</p>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
+                <!-- 4. ПРОЦЕССЫ -->
+                <div class="skill-card">
+                    <div class="icon">📋</div>
+                    <h3 data-i18n="skill_process_title">Процессы & Софт-скиллы</h3>
+                    <p style="font-weight: 600; margin: 12px 0 6px; color: #10b981; font-size: 0.9rem;" data-i18n="skill_confident">✅ Уверенно работаю:</p>
+                    <ul>
+                        <li data-i18n="skill_process_1">Jira (настройка досок, баг-трекинг)</li>
+                        <li data-i18n="skill_process_2">Составление чек-листов и тест-планов</li>
+                        <li data-i18n="skill_process_3">Баг-репорты (Gherkin, Given/When/Then)</li>
+                        <li data-i18n="skill_process_4">Работа с требованиями (анализ, уточнение)</li>
+                        <li data-i18n="skill_process_5">Тест-менеджмент (организация процесса)</li>
+                    </ul>
+                    <p style="font-weight: 600; margin: 16px 0 6px; color: #f59e0b; font-size: 0.9rem;" data-i18n="skill_developing">📖 Развиваю:</p>
+                    <ul>
+                        <li data-i18n="skill_process_6">TestRail / Qase (тест-кейсы, планы)</li>
+                        <li data-i18n="skill_process_7">Agile</li>
+                        <li data-i18n="skill_process_8">Метрики тестирования (DRE, плотность багов)</li>
+                        <li data-i18n="skill_process_9">Risk-based testing (приоритизация)</li>
+                        <li data-i18n="skill_process_10">Английский: пока A2, процесс изучения идёт</li>
+                    </ul>
+                    <div style="margin-top: 12px; padding: 10px; background: #f0f9ff; border-radius: 8px; border-left: 3px solid #2563eb;">
+                        <p style="font-size: 0.85rem; color: #475569;" data-i18n="skill_process_note">🎯 Цель: писать техдокументацию на EN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ===== КЕЙСЫ ===== -->
     <section class="section section-alt">
         <div class="container">
-            <h2>Кейсы, которыми горжусь</h2>
+            <h2 data-i18n="cases_title">Кейсы, которыми горжусь</h2>
             <div class="cases-grid">
                 <div class="case-card">
-                    <span class="tag">Manual</span>
-                    <h3>Интернет-магазин одежды</h3>
-                    <p><strong>Задача:</strong> Тестирование корзины, логики заказа и функционала для витрины.</p>
-                    <p><strong>Действия:</strong> Провёл кросс-браузерное тестирование, написал 40+ чек-листов, нашёл два критических бага при добавлении товара в корзину.</p>
-                    <div class="result">✅ Результат: <span>Предотвратил убытки ~100k, баги исправлены до релиза</span></div>
+                    <span class="tag" data-i18n="tag_manual">Manual</span>
+                    <h3 data-i18n="case1_title">Интернет-магазин одежды</h3>
+                    <p><strong data-i18n="task_label">Задача:</strong> <span data-i18n="case1_task">Тестирование корзины, логики заказа и функционала для витрины.</span></p>
+                    <p><strong data-i18n="actions_label">Действия:</strong> <span data-i18n="case1_actions">Провёл кросс-браузерное тестирование, написал 40+ чек-листов, нашёл два критических бага при добавлении товара в корзину.</span></p>
+                    <div class="result">✅ <span data-i18n="result_label">Результат:</span> <span data-i18n="case1_result">Предотвратил убытки ~100k, баги исправлены до релиза</span></div>
                 </div>
                 <div class="case-card">
                     <span class="tag">API</span>
-                    <h3>Тестирование API сервиса заказа цветов</h3>
-                    <p><strong>Задача:</strong> Создание коллекции тестов для Postman</p>
-                    <p><strong>Действия:</strong> Написал 25 тестов и проверил полную работоспособность бэкенда</p>
-                    <div class="result">✅ Результат: <span>Сервис работает без сбоев</span></div>
+                    <h3 data-i18n="case2_title">Тестирование API сервиса заказа цветов</h3>
+                    <p><strong data-i18n="task_label">Задача:</strong> <span data-i18n="case2_task">Создание коллекции тестов для Postman</span></p>
+                    <p><strong data-i18n="actions_label">Действия:</strong> <span data-i18n="case2_actions">Написал 25 тестов и проверил полную работоспособность бэкенда</span></p>
+                    <div class="result">✅ <span data-i18n="result_label">Результат:</span> <span data-i18n="case2_result">Сервис работает без сбоев</span></div>
                 </div>
                 <div class="case-card">
                     <span class="tag">Mobile</span>
-                    <h3>Небольшой стартап</h3>
-                    <p><strong>Задача:</strong> Написание коллекции тест-кейсов для основного функционала мобильного приложения Android</p>
-                    <p><strong>Действия:</strong>Написано около сотни кейсов и два десятка чеклистов</p>
-                    <div class="result">✅ Результат: <span>Покрыт тестами весь критичный функционал приложения</span></div>
+                    <h3 data-i18n="case3_title">Небольшой стартап</h3>
+                    <p><strong data-i18n="task_label">Задача:</strong> <span data-i18n="case3_task">Написание коллекции тест-кейсов для основного функционала мобильного приложения Android</span></p>
+                    <p><strong data-i18n="actions_label">Действия:</strong> <span data-i18n="case3_actions">Написано около сотни кейсов и два десятка чеклистов</span></p>
+                    <div class="result">✅ <span data-i18n="result_label">Результат:</span> <span data-i18n="case3_result">Покрыт тестами весь критичный функционал приложения</span></div>
                 </div>
             </div>
         </div>
@@ -690,23 +715,23 @@
     <!-- ===== МЯГКИЕ НАВЫКИ ===== -->
     <section class="section">
         <div class="container">
-            <h2>Почему со мной комфортно работать</h2>
+            <h2 data-i18n="soft_title">Почему со мной комфортно работать</h2>
             <div class="soft-grid">
                 <div class="soft-item">
-                    <h3>🗣️ Коммуникация</h3>
-                    <p>Понятно завожу баги, аргументирую приоритеты разработчикам без конфликтов. Работаю в команде как единое целое.</p>
+                    <h3 data-i18n="soft1_title">🗣️ Коммуникация</h3>
+                    <p data-i18n="soft1_text">Понятно завожу баги, аргументирую приоритеты разработчикам без конфликтов. Работаю в команде как единое целое.</p>
                 </div>
                 <div class="soft-item">
-                    <h3>🧠 Критическое мышление</h3>
-                    <p>Нахожу узкие места в требованиях ещё до начала разработки. Предлагаю решения, а не просто проблемы.</p>
+                    <h3 data-i18n="soft2_title">🧠 Критическое мышление</h3>
+                    <p data-i18n="soft2_text">Нахожу узкие места в требованиях ещё до начала разработки. Предлагаю решения, а не просто проблемы.</p>
                 </div>
                 <div class="soft-item">
-                    <h3>⏱️ Ответственность</h3>
-                    <p>Никогда не пропускаю баг в прод, если он влияет на пользователя. Горжусь качеством своей работы.</p>
+                    <h3 data-i18n="soft3_title">⏱️ Ответственность</h3>
+                    <p data-i18n="soft3_text">Никогда не пропускаю баг в прод, если он влияет на пользователя. Горжусь качеством своей работы.</p>
                 </div>
                 <div class="soft-item">
-                    <h3>📚 Обучаемость</h3>
-                    <p>Постоянно изучаю новые инструменты. Владею английским на уровне А2, читаю техническую документацию.</p>
+                    <h3 data-i18n="soft4_title">📚 Обучаемость</h3>
+                    <p data-i18n="soft4_text">Постоянно изучаю новые инструменты. Владею английским на уровне А2, читаю техническую документацию.</p>
                 </div>
             </div>
         </div>
@@ -715,35 +740,35 @@
     <!-- ===== ОТЗЫВЫ ===== -->
     <section class="section section-alt">
         <div class="container">
-            <h2>Что говорят коллеги</h2>
+            <h2 data-i18n="testimonials_title">Что говорят коллеги</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="quote">"Лучший QA, с которым я работал. Баги всегда воспроизводимые, а отчёты — прозрачные. Настоящий командный игрок."</p>
+                    <p class="quote" data-i18n="testimonial1_text">"Лучший QA, с которым я работал. Баги всегда воспроизводимые, а отчёты — прозрачные. Настоящий командный игрок."</p>
                     <div class="author">
                         <img src="first.jpg" alt="Аватар">
                         <div>
-                            <div class="name">Алексей Смирнов</div>
-                            <div class="role">Разработчик, фрилансер  </div>
+                            <div class="name" data-i18n="testimonial1_name">Алексей Смирнов</div>
+                            <div class="role" data-i18n="testimonial1_role">Разработчик, фрилансер</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="quote">"Очень внимательный к деталям. Нашёл баги, которые мы пропустили на код-ревью. Спас релиз перед дедлайном."</p>
+                    <p class="quote" data-i18n="testimonial2_text">"Очень внимательный к деталям. Нашёл баги, которые мы пропустили на код-ревью. Спас релиз перед дедлайном."</p>
                     <div class="author">
                         <img src="second.jpg" alt="Аватар">
                         <div>
-                            <div class="name">Екатерина Иванова</div>
-                            <div class="role">Заказчик, newflowers</div>
+                            <div class="name" data-i18n="testimonial2_name">Екатерина Иванова</div>
+                            <div class="role" data-i18n="testimonial2_role">Заказчик, newflowers</div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="quote">"С ним приятно работать: всегда на связи, быстро разбирается в новой функциональности и даёт обратную связь. Рекомендую!"</p>
+                    <p class="quote" data-i18n="testimonial3_text">"С ним приятно работать: всегда на связи, быстро разбирается в новой функциональности и даёт обратную связь. Рекомендую!"</p>
                     <div class="author">
                         <img src="third.jpg" alt="Аватар">
                         <div>
-                            <div class="name">Дмитрий Орлов</div>
-                            <div class="role">Product Manager, optandgo</div>
+                            <div class="name" data-i18n="testimonial3_name">Дмитрий Орлов</div>
+                            <div class="role" data-i18n="testimonial3_role">Product Manager, optandgo</div>
                         </div>
                     </div>
                 </div>
@@ -754,8 +779,8 @@
     <!-- ===== КОНТАКТЫ ===== -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <h2>Давайте работать вместе</h2>
-            <p>Ищете QA-инженера, который не просто находит баги, а помогает делать продукт лучше? Напишите мне!</p>
+            <h2 data-i18n="contact_title">Давайте работать вместе</h2>
+            <p data-i18n="contact_subtitle">Ищете QA-инженера, который не просто находит баги, а помогает делать продукт лучше? Напишите мне!</p>
             <div class="contact-links">
                 <a href="https://t.me/igoraki" target="_blank">✈️ Telegram</a>
                 <a href="mailto:akimoviigor@gmail.com">📧 Email</a>
@@ -768,276 +793,768 @@
     <!-- ===== ФУТЕР ===== -->
     <footer class="footer-bottom">
         <div class="container">
-            <p>© 2025 Игорь Акимов · QA Engineer. Всегда открыт к интересным предложениям.</p>
+            <p data-i18n="footer_text">© 2025 Игорь Акимов · QA Engineer. Всегда открыт к интересным предложениям.</p>
         </div>
     </footer>
-	<script>
-	// ===== ЛОГИКА КНОПКИ "БЕЗ QA" =====
-	document.addEventListener('DOMContentLoaded', function() {
-		
-		// Создаем кнопку
-		const bugButton = document.createElement('div');
-		bugButton.id = 'bug-toggle';
-		bugButton.innerHTML = '🐛 Показать, что было бы без QA';
-		bugButton.style.cssText = `
-			position: fixed;
-			bottom: 30px;
-			right: 30px;
-			z-index: 9999;
-			background: #ef4444;
-			color: white;
-			padding: 16px 28px;
-			border-radius: 50px;
-			cursor: pointer;
-			font-weight: 600;
-			font-size: 1rem;
-			box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
-			transition: all 0.3s ease;
-			border: none;
-			font-family: 'Inter', sans-serif;
-			animation: pulse-button 2s infinite;
-		`;
-		
-		// Стили для анимации кнопки
-		const style = document.createElement('style');
-		style.textContent = `
-			@keyframes pulse-button {
-				0%, 100% { transform: scale(1); }
-				50% { transform: scale(1.05); }
-			}
-			#bug-toggle:hover {
-				transform: scale(1.1) !important;
-				box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6) !important;
-				animation: none !important;
-			}
-			.qa-broken {
-				transition: all 0.5s ease !important;
-			}
-			.qa-broken img {
-				filter: grayscale(100%) blur(2px) !important;
-				transform: rotate(2deg) scale(0.95) !important;
-				transition: all 0.5s ease !important;
-			}
-			.qa-broken h1, .qa-broken h2, .qa-broken h3 {
-				font-family: 'Comic Sans MS', cursive !important;
-				color: #dc2626 !important;
-				text-shadow: 2px 2px 0 #000 !important;
-				transform: skewX(-3deg) !important;
-			}
-			.qa-broken p {
-				color: #6b7280 !important;
-				opacity: 0.7 !important;
-			}
-			.qa-broken .btn {
-				pointer-events: none !important;
-				opacity: 0.5 !important;
-				transform: scale(0.9) !important;
-			}
-			.qa-broken .skill-card {
-				border: 3px dashed #ef4444 !important;
-				background: #fef2f2 !important;
-				transform: rotate(-1deg) !important;
-			}
-			.qa-broken .case-card {
-				border: 3px dashed #ef4444 !important;
-				background: #fef2f2 !important;
-			}
-			.qa-broken .hero {
-				background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%) !important;
-			}
-			.qa-broken .hero h1 {
-				color: #fca5a5 !important;
-			}
-			.qa-broken .hero p {
-				color: #fecaca !important;
-			}
-			.qa-broken .hero-stats .number {
-				color: #ef4444 !important;
-				animation: blink-error 1s infinite !important;
-			}
-			@keyframes blink-error {
-				0%, 100% { opacity: 1; }
-				50% { opacity: 0.3; }
-			}
-			.qa-broken a {
-				color: #dc2626 !important;
-				text-decoration: line-through !important;
-			}
-			.qa-broken .contact-links a {
-				background: rgba(220, 38, 38, 0.2) !important;
-				border: 1px solid #ef4444 !important;
-			}
-			.qa-broken .testimonial-card {
-				border-left: 5px solid #ef4444 !important;
-				background: #fef2f2 !important;
-			}
-			.qa-broken .soft-item {
-				border: 2px dashed #ef4444 !important;
-				background: #fef2f2 !important;
-			}
-			.qa-broken .skill-card ul li::before {
-				content: '✗' !important;
-				color: #ef4444 !important;
-			}
-			.qa-broken .section-alt {
-				background: #fef2f2 !important;
-			}
-			.qa-broken .hero-photo img {
-				border: 4px solid #ef4444 !important;
-				filter: grayscale(100%) contrast(200%) !important;
-			}
-			/* Стили для "сломанных" кейсов */
-			.qa-broken .case-card .tag {
-				background: #fecaca !important;
-				color: #dc2626 !important;
-			}
-			.qa-broken .case-card .result {
-				color: #dc2626 !important;
-				border-top-color: #fecaca !important;
-			}
-			.qa-broken .case-card .result span {
-				color: #991b1b !important;
-			}
-		`;
-		document.head.appendChild(style);
-		
-		document.body.appendChild(bugButton);
-		
-		let isBroken = false;
-		
-		// Сохраняем оригинальное содержимое секции кейсов
-		const casesSection = document.querySelector('.section-alt .container');
-		const originalCasesHTML = casesSection ? casesSection.innerHTML : '';
-		
-		// Создаем "сломанную" версию кейсов
-		const brokenCasesHTML = `
-			<h2 style="color: #dc2626; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);">💸 Выгода, которую упустили</h2>
-			<div class="cases-grid">
-				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
-					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
-					<h3>Интернет-магазин одежды</h3>
-					<p><strong>Что пошло не так:</strong> Двойной баг ушёл в прод.</p>
-					<p><strong>Последствия:</strong> 47 клиентов потеряли деньги. Юридические иски на 120 тыс руб. Репутация уничтожена. Магазин закрылся через 3 месяца.</p>
-					<div class="result" style="color: #dc2626;">💀 Убытки: <span style="color: #991b1b;">120 тыс руб + потеря бизнеса</span></div>
-				</div>
-				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
-					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
-					<h3>Тестирование API сервиса заказа цветов</h3>
-					<p><strong>Что пошло не так:</strong>API перестал отвечать на запросы в момент создания заказов</p>
-					<p><strong>Последствия:</strong> Приложение падало при заказе у 30% пользователей. Рейтинг упал с 4.8 до 2.1. Отток клиентов — 15% за неделю.</p>
-					<div class="result" style="color: #dc2626;">💀 Потери: <span style="color: #991b1b;">-15% клиентов, репутационный ущерб</span></div>
-				</div>
-				<div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
-					<span class="tag" style="background: #fecaca; color: #dc2626;">❌ Провал</span>
-					<h3>Небольшой стартап</h3>
-					<p><strong>Что пошло не так:</strong>Основной функционал протестирован разработчиками на бегу</p>
-					<p><strong>Последствия:</strong> Не было замечено 15 критических багов приведших к масштабному коллапсу после выхода в прод</p>
-					<div class="result" style="color: #dc2626;">💀 Убытки: <span style="color: #991b1b;">Потрачено ещё два месяца на исправление ошибок, момент для старта упущен, потери в деньгах составили более 500 тыс руб</span></div>
-				</div>
-			</div>
-		`;
-		
-		bugButton.addEventListener('click', function() {
-			isBroken = !isBroken;
-			
-			if (isBroken) {
-				// Включаем "сломанную" версию
-				document.body.classList.add('qa-broken');
-				bugButton.innerHTML = '✨ Вернуть качество (QA on)';
-				bugButton.style.background = '#10b981';
-				bugButton.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.4)';
-				
-				// Меняем содержимое секции кейсов
-				if (casesSection) {
-					casesSection.innerHTML = brokenCasesHTML;
-				}
-				
-				// Добавляем "плавающие" баги
-				showFloatingBugs();
-				
-			} else {
-				// Возвращаем нормальную версию
-				document.body.classList.remove('qa-broken');
-				bugButton.innerHTML = '🐛 Показать, что было бы без QA';
-				bugButton.style.background = '#ef4444';
-				bugButton.style.boxShadow = '0 8px 24px rgba(239, 68, 68, 0.4)';
-				
-				// Восстанавливаем оригинальное содержимое кейсов
-				if (casesSection) {
-					casesSection.innerHTML = originalCasesHTML;
-				}
-				
-				// Удаляем плавающие баги
-				removeFloatingBugs();
-			}
-		});
-		
-		// Функция для создания "плавающих" багов
-		function showFloatingBugs() {
-			const bugs = [
-				'💥 404', '⚠️ CRITICAL', '🐞 BUG', '❗️ ERROR', 
-				'💀 NULL', '🔥 500', '⚠️ WARNING', '💢 FAIL',
-				'💰 LOST', '💸 MONEY', '📉 METRICS', '🚫 DEADLINE'
-			];
-			
-			for (let i = 0; i < 15; i++) {
-				const bug = document.createElement('div');
-				bug.className = 'floating-bug';
-				bug.textContent = bugs[Math.floor(Math.random() * bugs.length)];
-				bug.style.cssText = `
-					position: fixed;
-					z-index: 9998;
-					font-weight: 800;
-					font-size: ${14 + Math.random() * 20}px;
-					color: #ef4444;
-					background: rgba(239, 68, 68, 0.1);
-					padding: 6px 14px;
-					border-radius: 8px;
-					border: 2px solid #ef4444;
-					pointer-events: none;
-					animation: float-bug ${3 + Math.random() * 4}s ease-in-out infinite;
-					left: ${Math.random() * 90}%;
-					top: ${Math.random() * 90}%;
-					opacity: 0.8;
-					transform: rotate(${Math.random() * 30 - 15}deg);
-				`;
-				document.body.appendChild(bug);
-			}
-			
-			// Добавляем стили для анимации
-			const bugStyle = document.createElement('style');
-			bugStyle.id = 'bug-animation-style';
-			bugStyle.textContent = `
-				@keyframes float-bug {
-					0%, 100% { 
-						transform: translateY(0) rotate(0deg); 
-						opacity: 0.8;
-					}
-					25% { 
-						transform: translateY(-30px) rotate(5deg); 
-						opacity: 1;
-					}
-					50% { 
-						transform: translateY(0) rotate(-5deg); 
-						opacity: 0.6;
-					}
-					75% { 
-						transform: translateY(20px) rotate(3deg); 
-						opacity: 0.9;
-					}
-				}
-			`;
-			document.head.appendChild(bugStyle);
-		}
-		
-		function removeFloatingBugs() {
-			const bugs = document.querySelectorAll('.floating-bug');
-			bugs.forEach(bug => bug.remove());
-			const bugStyle = document.getElementById('bug-animation-style');
-			if (bugStyle) bugStyle.remove();
-		}
-	});
-	</script>
 
+    <script>
+        // ===== МУЛЬТИЯЗЫЧНОСТЬ (RU, EN, ES, DE) =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const translations = {
+                ru: {
+                    hero_title: 'Нахожу баги, которые <span class="highlight">ломают пользовательский опыт</span>',
+                    hero_subtitle: 'QA Engineer (Manual + Auto) с 3+ годами опыта. Помогаю командам выпускать стабильные релизы без сюрпризов в проде.',
+                    stat_bugs: 'Найденных багов',
+                    stat_tests: 'Автотестов',
+                    stat_releases: 'Успешных релизов',
+                    btn_contact: 'Связаться в Telegram',
+                    btn_resume: 'Скачать резюме (PDF)',
+                    skills_title: 'Мои суперсилы',
+                    skill_confident: '✅ Уверенно работаю:',
+                    skill_learning: '📖 Изучаю и применяю:',
+                    skill_learning_active: '📖 Активно изучаю:',
+                    skill_developing: '📖 Развиваю:',
+                    skill_design_title: 'Тест-дизайн',
+                    skill_design_1: 'Эквивалентное разделение',
+                    skill_design_2: 'Анализ граничных значений',
+                    skill_design_3: 'Попарное тестирование (Pairwise)',
+                    skill_design_4: 'Таблицы решений',
+                    skill_design_5: 'Тестирование состояний и переходов',
+                    skill_design_6: 'Тестирование на основе сценариев использования (Use Case)',
+                    skill_design_7: 'Классы эквивалентности для сложных бизнес-логик',
+                    skill_design_8: 'Техники для тестирования API (комбинаторика запросов)',
+                    skill_design_note: '📚 Сейчас: прохожу курс "Глубокий тест-дизайн" на Stepik.',
+                    skill_auto_title: 'Автоматизация',
+                    skill_auto_1: 'Postman (коллекции, автоматизация, тесты)',
+                    skill_auto_2: 'Git,',
+                    skill_auto_3: 'Базовый Docker (контейнеризация тестов)',
+                    skill_auto_4: 'Selenium WebDriver',
+                    skill_auto_5: 'Allure (подготовка отчётов) - изучаю',
+                    skill_auto_6: 'Playwright (TypeScript) — в планах',
+                    skill_auto_7: 'Вникаю в CI/CD (Jenkins)',
+                    skill_auto_note: '🔨 В ближайшее время pet-проект: Автотесты для demoqa.com (Playwright + TS, 30+ тестов, Allure-отчёты)',
+                    skill_api_title: 'API & Инструменты',
+                    skill_api_1: 'Postman (коллекции, переменные, тесты)',
+                    skill_api_2: 'Swagger / OpenAPI (чтение документации)',
+                    skill_api_3: 'SQL (SELECT, JOIN, подзапросы, агрегации)',
+                    skill_api_4: 'Git (push, pull, fetch)',
+                    skill_api_5: 'DevTools (Network, Console, Sources)',
+                    skill_api_6: 'Charles / Fiddler (перехват трафика)',
+                    skill_api_7: 'Linux (базовые команды, работа с сервером)',
+                    skill_api_8: 'GraphQL (базовые запросы, тестирование)',
+                    skill_api_9: 'gRPC (понимание протокола)',
+                    skill_api_10: 'Kibana / Grafana (анализ логов)',
+                    skill_api_note: '📚 Планирую: освоить GraphQL до конца осени.',
+                    skill_process_title: 'Процессы & Софт-скиллы',
+                    skill_process_1: 'Jira (настройка досок, баг-трекинг)',
+                    skill_process_2: 'Составление чек-листов и тест-планов',
+                    skill_process_3: 'Баг-репорты (Gherkin, Given/When/Then)',
+                    skill_process_4: 'Работа с требованиями (анализ, уточнение)',
+                    skill_process_5: 'Тест-менеджмент (организация процесса)',
+                    skill_process_6: 'TestRail / Qase (тест-кейсы, планы)',
+                    skill_process_7: 'Agile',
+                    skill_process_8: 'Метрики тестирования (DRE, плотность багов)',
+                    skill_process_9: 'Risk-based testing (приоритизация)',
+                    skill_process_10: 'Английский: пока A2, процесс изучения идёт',
+                    skill_process_note: '🎯 Цель: писать техдокументацию на EN',
+                    cases_title: 'Кейсы, которыми горжусь',
+                    tag_manual: 'Manual',
+                    task_label: 'Задача:',
+                    actions_label: 'Действия:',
+                    result_label: 'Результат:',
+                    case1_title: 'Интернет-магазин одежды',
+                    case1_task: 'Тестирование корзины, логики заказа и функционала для витрины.',
+                    case1_actions: 'Провёл кросс-браузерное тестирование, написал 40+ чек-листов, нашёл два критических бага при добавлении товара в корзину.',
+                    case1_result: 'Предотвратил убытки ~100k, баги исправлены до релиза',
+                    case2_title: 'Тестирование API сервиса заказа цветов',
+                    case2_task: 'Создание коллекции тестов для Postman',
+                    case2_actions: 'Написал 25 тестов и проверил полную работоспособность бэкенда',
+                    case2_result: 'Сервис работает без сбоев',
+                    case3_title: 'Небольшой стартап',
+                    case3_task: 'Написание коллекции тест-кейсов для основного функционала мобильного приложения Android',
+                    case3_actions: 'Написано около сотни кейсов и два десятка чеклистов',
+                    case3_result: 'Покрыт тестами весь критичный функционал приложения',
+                    soft_title: 'Почему со мной комфортно работать',
+                    soft1_title: '🗣️ Коммуникация',
+                    soft1_text: 'Понятно завожу баги, аргументирую приоритеты разработчикам без конфликтов. Работаю в команде как единое целое.',
+                    soft2_title: '🧠 Критическое мышление',
+                    soft2_text: 'Нахожу узкие места в требованиях ещё до начала разработки. Предлагаю решения, а не просто проблемы.',
+                    soft3_title: '⏱️ Ответственность',
+                    soft3_text: 'Никогда не пропускаю баг в прод, если он влияет на пользователя. Горжусь качеством своей работы.',
+                    soft4_title: '📚 Обучаемость',
+                    soft4_text: 'Постоянно изучаю новые инструменты. Владею английским на уровне А2, читаю техническую документацию.',
+                    testimonials_title: 'Что говорят коллеги',
+                    testimonial1_text: '"Лучший QA, с которым я работал. Баги всегда воспроизводимые, а отчёты — прозрачные. Настоящий командный игрок."',
+                    testimonial1_name: 'Алексей Смирнов',
+                    testimonial1_role: 'Разработчик, фрилансер',
+                    testimonial2_text: '"Очень внимательный к деталям. Нашёл баги, которые мы пропустили на код-ревью. Спас релиз перед дедлайном."',
+                    testimonial2_name: 'Екатерина Иванова',
+                    testimonial2_role: 'Заказчик, newflowers',
+                    testimonial3_text: '"С ним приятно работать: всегда на связи, быстро разбирается в новой функциональности и даёт обратную связь. Рекомендую!"',
+                    testimonial3_name: 'Дмитрий Орлов',
+                    testimonial3_role: 'Product Manager, optandgo',
+                    contact_title: 'Давайте работать вместе',
+                    contact_subtitle: 'Ищете QA-инженера, который не просто находит баги, а помогает делать продукт лучше? Напишите мне!',
+                    footer_text: '© 2025 Игорь Акимов · QA Engineer. Всегда открыт к интересным предложениям.',
+                    // Переводы для интерактивной кнопки и "сломанных" кейсов
+                    bug_btn_show: '🐛 Показать, что было бы без QA',
+                    bug_btn_hide: '✨ Вернуть качество (QA on)',
+                    broken_title: '💸 Выгода, которую упустили',
+                    broken_tag: '❌ Провал',
+                    broken_case1_title: 'Интернет-магазин одежды',
+                    broken_case1_what: 'Что пошло не так:',
+                    broken_case1_desc: 'Двойной баг ушёл в прод.',
+                    broken_case1_conseq: 'Последствия:',
+                    broken_case1_conseq_text: '47 клиентов потеряли деньги. Юридические иски на 120 тыс руб. Репутация уничтожена. Магазин закрылся через 3 месяца.',
+                    broken_case1_result: '💀 Убытки: 120 тыс руб + потеря бизнеса',
+                    broken_case2_title: 'Тестирование API сервиса заказа цветов',
+                    broken_case2_what: 'Что пошло не так:',
+                    broken_case2_desc: 'API перестал отвечать на запросы в момент создания заказов',
+                    broken_case2_conseq: 'Последствия:',
+                    broken_case2_conseq_text: 'Приложение падало при заказе у 30% пользователей. Рейтинг упал с 4.8 до 2.1. Отток клиентов — 15% за неделю.',
+                    broken_case2_result: '💀 Потери: -15% клиентов, репутационный ущерб',
+                    broken_case3_title: 'Небольшой стартап',
+                    broken_case3_what: 'Что пошло не так:',
+                    broken_case3_desc: 'Основной функционал протестирован разработчиками на бегу',
+                    broken_case3_conseq: 'Последствия:',
+                    broken_case3_conseq_text: 'Не было замечено 15 критических багов приведших к масштабному коллапсу после выхода в прод',
+                    broken_case3_result: '💀 Убытки: Потрачено ещё два месяца на исправление ошибок, момент для старта упущен, потери в деньгах составили более 500 тыс руб'
+                },
+                en: {
+                    hero_title: 'I find bugs that <span class="highlight">break the user experience</span>',
+                    hero_subtitle: 'QA Engineer (Manual + Auto) with 3+ years of experience. Helping teams ship stable releases without surprises in production.',
+                    stat_bugs: 'Bugs found',
+                    stat_tests: 'Automated tests',
+                    stat_releases: 'Successful releases',
+                    btn_contact: 'Contact me in Telegram',
+                    btn_resume: 'Download resume (PDF)',
+                    skills_title: 'My superpowers',
+                    skill_confident: '✅ Confident with:',
+                    skill_learning: '📖 Learning and applying:',
+                    skill_learning_active: '📖 Actively learning:',
+                    skill_developing: '📖 Developing:',
+                    skill_design_title: 'Test Design',
+                    skill_design_1: 'Equivalence Partitioning',
+                    skill_design_2: 'Boundary Value Analysis',
+                    skill_design_3: 'Pairwise Testing',
+                    skill_design_4: 'Decision Tables',
+                    skill_design_5: 'State Transition Testing',
+                    skill_design_6: 'Use Case Testing',
+                    skill_design_7: 'Equivalence classes for complex business logic',
+                    skill_design_8: 'API testing techniques (request combinatorics)',
+                    skill_design_note: '📚 Currently: taking "Deep Test Design" course on Stepik.',
+                    skill_auto_title: 'Automation',
+                    skill_auto_1: 'Postman (collections, automation, tests)',
+                    skill_auto_2: 'Git,',
+                    skill_auto_3: 'Basic Docker (test containerization)',
+                    skill_auto_4: 'Selenium WebDriver',
+                    skill_auto_5: 'Allure (reporting) - learning',
+                    skill_auto_6: 'Playwright (TypeScript) — planned',
+                    skill_auto_7: 'Diving into CI/CD (Jenkins)',
+                    skill_auto_note: '🔨 Upcoming pet-project: Automated tests for demoqa.com (Playwright + TS, 30+ tests, Allure reports)',
+                    skill_api_title: 'API & Tools',
+                    skill_api_1: 'Postman (collections, variables, tests)',
+                    skill_api_2: 'Swagger / OpenAPI (reading docs)',
+                    skill_api_3: 'SQL (SELECT, JOIN, subqueries, aggregations)',
+                    skill_api_4: 'Git (push, pull, fetch)',
+                    skill_api_5: 'DevTools (Network, Console, Sources)',
+                    skill_api_6: 'Charles / Fiddler (traffic interception)',
+                    skill_api_7: 'Linux (basic commands, server work)',
+                    skill_api_8: 'GraphQL (basic queries, testing)',
+                    skill_api_9: 'gRPC (protocol understanding)',
+                    skill_api_10: 'Kibana / Grafana (log analysis)',
+                    skill_api_note: '📚 Planning: master GraphQL by the end of autumn.',
+                    skill_process_title: 'Processes & Soft Skills',
+                    skill_process_1: 'Jira (board setup, bug tracking)',
+                    skill_process_2: 'Creating checklists and test plans',
+                    skill_process_3: 'Bug reports (Gherkin, Given/When/Then)',
+                    skill_process_4: 'Requirements analysis and clarification',
+                    skill_process_5: 'Test management (process organization)',
+                    skill_process_6: 'TestRail / Qase (test cases, plans)',
+                    skill_process_7: 'Agile',
+                    skill_process_8: 'Testing metrics (DRE, bug density)',
+                    skill_process_9: 'Risk-based testing (prioritization)',
+                    skill_process_10: 'English: currently A2, learning in progress',
+                    skill_process_note: '🎯 Goal: write technical documentation in English',
+                    cases_title: 'Cases I\'m proud of',
+                    tag_manual: 'Manual',
+                    task_label: 'Task:',
+                    actions_label: 'Actions:',
+                    result_label: 'Result:',
+                    case1_title: 'Online clothing store',
+                    case1_task: 'Testing the cart, order logic, and storefront functionality.',
+                    case1_actions: 'Conducted cross-browser testing, wrote 40+ checklists, found two critical bugs when adding items to cart.',
+                    case1_result: 'Prevented losses of ~$100k, bugs fixed before release',
+                    case2_title: 'API testing for a flower ordering service',
+                    case2_task: 'Creating a Postman test collection',
+                    case2_actions: 'Wrote 25 tests and verified full backend functionality',
+                    case2_result: 'Service runs without failures',
+                    case3_title: 'Small startup',
+                    case3_task: 'Writing test cases for the core functionality of an Android mobile app',
+                    case3_actions: 'Created about a hundred test cases and two dozen checklists',
+                    case3_result: 'All critical app functionality covered by tests',
+                    soft_title: 'Why it\'s comfortable to work with me',
+                    soft1_title: '🗣️ Communication',
+                    soft1_text: 'I clearly report bugs, argue priorities with developers without conflicts. I work as a cohesive team player.',
+                    soft2_title: '🧠 Critical Thinking',
+                    soft2_text: 'I find bottlenecks in requirements before development starts. I offer solutions, not just problems.',
+                    soft3_title: '⏱️ Responsibility',
+                    soft3_text: 'I never let a bug go to production if it affects the user. I take pride in the quality of my work.',
+                    soft4_title: '📚 Learning ability',
+                    soft4_text: 'I constantly learn new tools. I have English at A2 level and read technical documentation.',
+                    testimonials_title: 'What colleagues say',
+                    testimonial1_text: '"The best QA I\'ve worked with. Bugs are always reproducible and reports are transparent. A true team player."',
+                    testimonial1_name: 'Alexey Smirnov',
+                    testimonial1_role: 'Developer, freelancer',
+                    testimonial2_text: '"Very detail-oriented. Found bugs we missed during code review. Saved the release before the deadline."',
+                    testimonial2_name: 'Ekaterina Ivanova',
+                    testimonial2_role: 'Client, newflowers',
+                    testimonial3_text: '"He\'s pleasant to work with: always available, quickly understands new functionality, and provides feedback. I recommend!"',
+                    testimonial3_name: 'Dmitry Orlov',
+                    testimonial3_role: 'Product Manager, optandgo',
+                    contact_title: 'Let\'s work together',
+                    contact_subtitle: 'Looking for a QA engineer who doesn\'t just find bugs but helps make the product better? Write to me!',
+                    footer_text: '© 2025 Igor Akimov · QA Engineer. Always open to interesting offers.',
+                    // Interactive button and broken cases translations
+                    bug_btn_show: '🐛 Show what it would be like without QA',
+                    bug_btn_hide: '✨ Restore quality (QA on)',
+                    broken_title: '💸 Missed benefits',
+                    broken_tag: '❌ Failure',
+                    broken_case1_title: 'Online clothing store',
+                    broken_case1_what: 'What went wrong:',
+                    broken_case1_desc: 'A double bug went into production.',
+                    broken_case1_conseq: 'Consequences:',
+                    broken_case1_conseq_text: '47 customers lost money. Legal claims for 120k rubles. Reputation destroyed. The store closed after 3 months.',
+                    broken_case1_result: '💀 Losses: 120k rubles + business loss',
+                    broken_case2_title: 'API testing for a flower ordering service',
+                    broken_case2_what: 'What went wrong:',
+                    broken_case2_desc: 'The API stopped responding to requests when creating orders',
+                    broken_case2_conseq: 'Consequences:',
+                    broken_case2_conseq_text: 'The app crashed for 30% of users during checkout. Rating dropped from 4.8 to 2.1. Customer churn — 15% per week.',
+                    broken_case2_result: '💀 Losses: -15% clients, reputational damage',
+                    broken_case3_title: 'Small startup',
+                    broken_case3_what: 'What went wrong:',
+                    broken_case3_desc: 'Core functionality was tested by developers on the fly',
+                    broken_case3_conseq: 'Consequences:',
+                    broken_case3_conseq_text: '15 critical bugs went unnoticed, leading to a massive collapse after going live',
+                    broken_case3_result: '💀 Losses: Spent another two months fixing bugs, missed the launch window, financial losses over 500k rubles'
+                },
+                es: {
+                    hero_title: 'Encuentro errores que <span class="highlight">arruinan la experiencia del usuario</span>',
+                    hero_subtitle: 'Ingeniero de QA (Manual + Automatización) con más de 3 años de experiencia. Ayudo a los equipos a lanzar versiones estables sin sorpresas en producción.',
+                    stat_bugs: 'Errores encontrados',
+                    stat_tests: 'Pruebas automatizadas',
+                    stat_releases: 'Lanzamientos exitosos',
+                    btn_contact: 'Contáctame en Telegram',
+                    btn_resume: 'Descargar currículum (PDF)',
+                    skills_title: 'Mis superpoderes',
+                    skill_confident: '✅ Trabajo con confianza:',
+                    skill_learning: '📖 Aprendiendo y aplicando:',
+                    skill_learning_active: '📖 Aprendiendo activamente:',
+                    skill_developing: '📖 Desarrollando:',
+                    skill_design_title: 'Diseño de Pruebas',
+                    skill_design_1: 'Partición de equivalencia',
+                    skill_design_2: 'Análisis de valores límite',
+                    skill_design_3: 'Pruebas por pares (Pairwise)',
+                    skill_design_4: 'Tablas de decisión',
+                    skill_design_5: 'Pruebas de transiciones de estado',
+                    skill_design_6: 'Pruebas basadas en casos de uso',
+                    skill_design_7: 'Clases de equivalencia para lógica de negocio compleja',
+                    skill_design_8: 'Técnicas para pruebas de API (combinatoria de solicitudes)',
+                    skill_design_note: '📚 Actualmente: tomando el curso "Diseño profundo de pruebas" en Stepik.',
+                    skill_auto_title: 'Automatización',
+                    skill_auto_1: 'Postman (colecciones, automatización, pruebas)',
+                    skill_auto_2: 'Git,',
+                    skill_auto_3: 'Docker básico (contenedorización de pruebas)',
+                    skill_auto_4: 'Selenium WebDriver',
+                    skill_auto_5: 'Allure (informes) - aprendiendo',
+                    skill_auto_6: 'Playwright (TypeScript) — planeado',
+                    skill_auto_7: 'Explorando CI/CD (Jenkins)',
+                    skill_auto_note: '🔨 Próximo proyecto personal: Pruebas automatizadas para demoqa.com (Playwright + TS, 30+ pruebas, informes Allure)',
+                    skill_api_title: 'API y Herramientas',
+                    skill_api_1: 'Postman (colecciones, variables, pruebas)',
+                    skill_api_2: 'Swagger / OpenAPI (lectura de documentación)',
+                    skill_api_3: 'SQL (SELECT, JOIN, subconsultas, agregaciones)',
+                    skill_api_4: 'Git (push, pull, fetch)',
+                    skill_api_5: 'DevTools (Network, Console, Sources)',
+                    skill_api_6: 'Charles / Fiddler (intercepción de tráfico)',
+                    skill_api_7: 'Linux (comandos básicos, trabajo con servidor)',
+                    skill_api_8: 'GraphQL (consultas básicas, pruebas)',
+                    skill_api_9: 'gRPC (comprensión del protocolo)',
+                    skill_api_10: 'Kibana / Grafana (análisis de registros)',
+                    skill_api_note: '📚 Planeando: dominar GraphQL para finales de otoño.',
+                    skill_process_title: 'Procesos y Habilidades Blandas',
+                    skill_process_1: 'Jira (configuración de tableros, seguimiento de errores)',
+                    skill_process_2: 'Creación de listas de verificación y planes de prueba',
+                    skill_process_3: 'Informes de errores (Gherkin, Given/When/Then)',
+                    skill_process_4: 'Análisis y clarificación de requisitos',
+                    skill_process_5: 'Gestión de pruebas (organización del proceso)',
+                    skill_process_6: 'TestRail / Qase (casos de prueba, planes)',
+                    skill_process_7: 'Agile',
+                    skill_process_8: 'Métricas de prueba (DRE, densidad de errores)',
+                    skill_process_9: 'Pruebas basadas en riesgos (priorización)',
+                    skill_process_10: 'Inglés: actualmente A2, proceso de aprendizaje en curso',
+                    skill_process_note: '🎯 Objetivo: escribir documentación técnica en inglés',
+                    cases_title: 'Casos de los que me enorgullezco',
+                    tag_manual: 'Manual',
+                    task_label: 'Tarea:',
+                    actions_label: 'Acciones:',
+                    result_label: 'Resultado:',
+                    case1_title: 'Tienda de ropa en línea',
+                    case1_task: 'Pruebas del carrito, lógica de pedidos y funcionalidad del escaparate.',
+                    case1_actions: 'Realicé pruebas entre navegadores, escribí más de 40 listas de verificación, encontré dos errores críticos al agregar productos al carrito.',
+                    case1_result: 'Prevení pérdidas de ~$100k, errores corregidos antes del lanzamiento',
+                    case2_title: 'Pruebas de API para un servicio de pedidos de flores',
+                    case2_task: 'Creación de una colección de pruebas en Postman',
+                    case2_actions: 'Escribí 25 pruebas y verifiqué la funcionalidad completa del backend',
+                    case2_result: 'El servicio funciona sin fallos',
+                    case3_title: 'Pequeña startup',
+                    case3_task: 'Redacción de casos de prueba para la funcionalidad principal de una aplicación móvil Android',
+                    case3_actions: 'Se crearon alrededor de cien casos de prueba y dos docenas de listas de verificación',
+                    case3_result: 'Toda la funcionalidad crítica de la aplicación está cubierta por pruebas',
+                    soft_title: 'Por qué es cómodo trabajar conmigo',
+                    soft1_title: '🗣️ Comunicación',
+                    soft1_text: 'Reporto errores claramente, argumento prioridades con los desarrolladores sin conflictos. Trabajo en equipo de forma cohesionada.',
+                    soft2_title: '🧠 Pensamiento crítico',
+                    soft2_text: 'Encuentro cuellos de botella en los requisitos antes de que comience el desarrollo. Ofrezco soluciones, no solo problemas.',
+                    soft3_title: '⏱️ Responsabilidad',
+                    soft3_text: 'Nunca dejo que un error llegue a producción si afecta al usuario. Me enorgullezco de la calidad de mi trabajo.',
+                    soft4_title: '📚 Capacidad de aprendizaje',
+                    soft4_text: 'Constantemente aprendo nuevas herramientas. Tengo inglés nivel A2 y leo documentación técnica.',
+                    testimonials_title: 'Lo que dicen los colegas',
+                    testimonial1_text: '"El mejor QA con el que he trabajado. Los errores siempre son reproducibles y los informes transparentes. Un verdadero jugador de equipo."',
+                    testimonial1_name: 'Alexey Smirnov',
+                    testimonial1_role: 'Desarrollador, freelancer',
+                    testimonial2_text: '"Muy atento a los detalles. Encontró errores que pasamos por alto en la revisión de código. Salvó el lanzamiento antes de la fecha límite."',
+                    testimonial2_name: 'Ekaterina Ivanova',
+                    testimonial2_role: 'Cliente, newflowers',
+                    testimonial3_text: '"Es agradable trabajar con él: siempre disponible, entiende rápidamente la nueva funcionalidad y proporciona retroalimentación. ¡Lo recomiendo!"',
+                    testimonial3_name: 'Dmitry Orlov',
+                    testimonial3_role: 'Product Manager, optandgo',
+                    contact_title: 'Trabajemos juntos',
+                    contact_subtitle: '¿Buscas un ingeniero de QA que no solo encuentre errores, sino que ayude a mejorar el producto? ¡Escríbeme!',
+                    footer_text: '© 2025 Igor Akimov · Ingeniero de QA. Siempre abierto a ofertas interesantes.',
+                    // Interactive button and broken cases translations
+                    bug_btn_show: '🐛 Mostrar cómo sería sin QA',
+                    bug_btn_hide: '✨ Restaurar calidad (QA on)',
+                    broken_title: '💸 Beneficios perdidos',
+                    broken_tag: '❌ Fracaso',
+                    broken_case1_title: 'Tienda de ropa en línea',
+                    broken_case1_what: '¿Qué salió mal?:',
+                    broken_case1_desc: 'Un error doble pasó a producción.',
+                    broken_case1_conseq: 'Consecuencias:',
+                    broken_case1_conseq_text: '47 clientes perdieron dinero. Demandas legales por 120 mil rublos. Reputación destruida. La tienda cerró después de 3 meses.',
+                    broken_case1_result: '💀 Pérdidas: 120 mil rublos + pérdida del negocio',
+                    broken_case2_title: 'Pruebas de API para servicio de pedidos de flores',
+                    broken_case2_what: '¿Qué salió mal?:',
+                    broken_case2_desc: 'La API dejó de responder a las solicitudes al crear pedidos',
+                    broken_case2_conseq: 'Consecuencias:',
+                    broken_case2_conseq_text: 'La aplicación fallaba para el 30% de los usuarios al hacer un pedido. La calificación bajó de 4.8 a 2.1. Pérdida de clientes: 15% por semana.',
+                    broken_case2_result: '💀 Pérdidas: -15% clientes, daño reputacional',
+                    broken_case3_title: 'Pequeña startup',
+                    broken_case3_what: '¿Qué salió mal?:',
+                    broken_case3_desc: 'La funcionalidad principal fue probada por los desarrolladores sobre la marcha',
+                    broken_case3_conseq: 'Consecuencias:',
+                    broken_case3_conseq_text: '15 errores críticos pasaron desapercibidos, lo que provocó un colapso masivo después del lanzamiento',
+                    broken_case3_result: '💀 Pérdidas: Se gastaron dos meses más en corregir errores, se perdió la oportunidad de lanzamiento, pérdidas financieras superiores a 500 mil rublos'
+                },
+                de: {
+                    hero_title: 'Ich finde Fehler, die <span class="highlight">die Benutzererfahrung zerstören</span>',
+                    hero_subtitle: 'QA-Ingenieur (Manuell + Automatisierung) mit über 3 Jahren Erfahrung. Ich helfe Teams, stabile Releases ohne Überraschungen in der Produktion zu veröffentlichen.',
+                    stat_bugs: 'Gefundene Fehler',
+                    stat_tests: 'Automatisierte Tests',
+                    stat_releases: 'Erfolgreiche Releases',
+                    btn_contact: 'Kontakt via Telegram',
+                    btn_resume: 'Lebenslauf herunterladen (PDF)',
+                    skills_title: 'Meine Superkräfte',
+                    skill_confident: '✅ Sicher im Umgang mit:',
+                    skill_learning: '📖 Lerne und wende an:',
+                    skill_learning_active: '📖 Aktiv am Lernen:',
+                    skill_developing: '📖 Entwickle:',
+                    skill_design_title: 'Testdesign',
+                    skill_design_1: 'Äquivalenzklassenbildung',
+                    skill_design_2: 'Grenzwertanalyse',
+                    skill_design_3: 'Paarweises Testen (Pairwise)',
+                    skill_design_4: 'Entscheidungstabellen',
+                    skill_design_5: 'Zustandsübergangstests',
+                    skill_design_6: 'Anwendungsfallbasiertes Testen',
+                    skill_design_7: 'Äquivalenzklassen für komplexe Geschäftslogik',
+                    skill_design_8: 'Techniken für API-Tests (Anforderungskombinatorik)',
+                    skill_design_note: '📚 Derzeit: Besuche den Kurs "Deep Test Design" auf Stepik.',
+                    skill_auto_title: 'Automatisierung',
+                    skill_auto_1: 'Postman (Sammlungen, Automatisierung, Tests)',
+                    skill_auto_2: 'Git,',
+                    skill_auto_3: 'Basis-Docker (Test-Containerisierung)',
+                    skill_auto_4: 'Selenium WebDriver',
+                    skill_auto_5: 'Allure (Berichterstattung) - lerne',
+                    skill_auto_6: 'Playwright (TypeScript) — geplant',
+                    skill_auto_7: 'Eintauchen in CI/CD (Jenkins)',
+                    skill_auto_note: '🔨 Nächstes Pet-Projekt: Automatisierte Tests für demoqa.com (Playwright + TS, 30+ Tests, Allure-Berichte)',
+                    skill_api_title: 'API & Werkzeuge',
+                    skill_api_1: 'Postman (Sammlungen, Variablen, Tests)',
+                    skill_api_2: 'Swagger / OpenAPI (Dokumentation lesen)',
+                    skill_api_3: 'SQL (SELECT, JOIN, Unterabfragen, Aggregationen)',
+                    skill_api_4: 'Git (push, pull, fetch)',
+                    skill_api_5: 'DevTools (Network, Console, Sources)',
+                    skill_api_6: 'Charles / Fiddler (Verkehrsabfang)',
+                    skill_api_7: 'Linux (grundlegende Befehle, Serverarbeit)',
+                    skill_api_8: 'GraphQL (grundlegende Abfragen, Tests)',
+                    skill_api_9: 'gRPC (Protokollverständnis)',
+                    skill_api_10: 'Kibana / Grafana (Log-Analyse)',
+                    skill_api_note: '📚 Geplant: GraphQL bis Ende Herbst meistern.',
+                    skill_process_title: 'Prozesse & Soft Skills',
+                    skill_process_1: 'Jira (Board-Einrichtung, Fehlerverfolgung)',
+                    skill_process_2: 'Erstellung von Checklisten und Testplänen',
+                    skill_process_3: 'Fehlerberichte (Gherkin, Given/When/Then)',
+                    skill_process_4: 'Anforderungsanalyse und -klärung',
+                    skill_process_5: 'Testmanagement (Prozessorganisation)',
+                    skill_process_6: 'TestRail / Qase (Testfälle, Pläne)',
+                    skill_process_7: 'Agile',
+                    skill_process_8: 'Testmetriken (DRE, Fehlerdichte)',
+                    skill_process_9: 'Risikobasiertes Testen (Priorisierung)',
+                    skill_process_10: 'Englisch: derzeit A2, Lernprozess läuft',
+                    skill_process_note: '🎯 Ziel: technische Dokumentation auf Englisch schreiben',
+                    cases_title: 'Fälle, auf die ich stolz bin',
+                    tag_manual: 'Manuell',
+                    task_label: 'Aufgabe:',
+                    actions_label: 'Maßnahmen:',
+                    result_label: 'Ergebnis:',
+                    case1_title: 'Online-Bekleidungsgeschäft',
+                    case1_task: 'Testen des Warenkorbs, der Bestelllogik und der Schaufensterfunktionalität.',
+                    case1_actions: 'Führte Cross-Browser-Tests durch, schrieb über 40 Checklisten, fand zwei kritische Fehler beim Hinzufügen von Artikeln zum Warenkorb.',
+                    case1_result: 'Verhinderte Verluste von ~$100k, Fehler vor dem Release behoben',
+                    case2_title: 'API-Tests für einen Blumenbestelldienst',
+                    case2_task: 'Erstellung einer Postman-Testsammlung',
+                    case2_actions: 'Schrieb 25 Tests und überprüfte die vollständige Backend-Funktionalität',
+                    case2_result: 'Dienst läuft ohne Ausfälle',
+                    case3_title: 'Kleines Startup',
+                    case3_task: 'Erstellung von Testfällen für die Kernfunktionalität einer Android-Mobil-App',
+                    case3_actions: 'Erstellte etwa hundert Testfälle und zwei Dutzend Checklisten',
+                    case3_result: 'Die gesamte kritische App-Funktionalität ist durch Tests abgedeckt',
+                    soft_title: 'Warum die Zusammenarbeit mit mir angenehm ist',
+                    soft1_title: '🗣️ Kommunikation',
+                    soft1_text: 'Ich melde Fehler klar, argumentiere Prioritäten mit Entwicklern ohne Konflikte. Ich arbeite als einheitliches Teammitglied.',
+                    soft2_title: '🧠 Kritisches Denken',
+                    soft2_text: 'Ich finde Engpässe in den Anforderungen, bevor die Entwicklung beginnt. Ich biete Lösungen, nicht nur Probleme.',
+                    soft3_title: '⏱️ Verantwortung',
+                    soft3_text: 'Ich lasse niemals einen Fehler in die Produktion gelangen, wenn er den Benutzer betrifft. Ich bin stolz auf die Qualität meiner Arbeit.',
+                    soft4_title: '📚 Lernfähigkeit',
+                    soft4_text: 'Ich lerne ständig neue Werkzeuge. Ich habe Englisch auf A2-Niveau und lese technische Dokumentation.',
+                    testimonials_title: 'Was Kollegen sagen',
+                    testimonial1_text: '"Der beste QA, mit dem ich gearbeitet habe. Fehler sind immer reproduzierbar und Berichte transparent. Ein echter Teamplayer."',
+                    testimonial1_name: 'Alexey Smirnov',
+                    testimonial1_role: 'Entwickler, Freelancer',
+                    testimonial2_text: '"Sehr detailorientiert. Fand Fehler, die wir im Code-Review übersehen haben. Hat den Release vor der Deadline gerettet."',
+                    testimonial2_name: 'Ekaterina Ivanova',
+                    testimonial2_role: 'Kunde, newflowers',
+                    testimonial3_text: '"Er ist angenehm zu arbeiten: immer erreichbar, versteht schnell neue Funktionalitäten und gibt Feedback. Ich empfehle ihn!"',
+                    testimonial3_name: 'Dmitry Orlov',
+                    testimonial3_role: 'Produktmanager, optandgo',
+                    contact_title: 'Lassen Sie uns zusammenarbeiten',
+                    contact_subtitle: 'Suchen Sie einen QA-Ingenieur, der nicht nur Fehler findet, sondern hilft, das Produkt zu verbessern? Schreiben Sie mir!',
+                    footer_text: '© 2025 Igor Akimov · QA-Ingenieur. Immer offen für interessante Angebote.',
+                    // Interactive button and broken cases translations
+                    bug_btn_show: '🐛 Zeigen, wie es ohne QA wäre',
+                    bug_btn_hide: '✨ Qualität wiederherstellen (QA an)',
+                    broken_title: '💸 Verpasste Vorteile',
+                    broken_tag: '❌ Fehlschlag',
+                    broken_case1_title: 'Online-Bekleidungsgeschäft',
+                    broken_case1_what: 'Was ist schiefgelaufen?:',
+                    broken_case1_desc: 'Ein doppelter Fehler ging in die Produktion.',
+                    broken_case1_conseq: 'Konsequenzen:',
+                    broken_case1_conseq_text: '47 Kunden verloren Geld. Klagen über 120 Tsd. Rubel. Ruf zerstört. Der Laden schloss nach 3 Monaten.',
+                    broken_case1_result: '💀 Verluste: 120 Tsd. Rubel + Geschäftsverlust',
+                    broken_case2_title: 'API-Tests für Blumenbestelldienst',
+                    broken_case2_what: 'Was ist schiefgelaufen?:',
+                    broken_case2_desc: 'Die API reagierte nicht mehr auf Anfragen beim Erstellen von Bestellungen',
+                    broken_case2_conseq: 'Konsequenzen:',
+                    broken_case2_conseq_text: 'Die App stürzte bei 30% der Benutzer während des Bestellvorgangs ab. Bewertung fiel von 4,8 auf 2,1. Kundenabwanderung: 15% pro Woche.',
+                    broken_case2_result: '💀 Verluste: -15% Kunden, Rufschädigung',
+                    broken_case3_title: 'Kleines Startup',
+                    broken_case3_what: 'Was ist schiefgelaufen?:',
+                    broken_case3_desc: 'Die Kernfunktionalität wurde von Entwicklern im Vorbeigehen getestet',
+                    broken_case3_conseq: 'Konsequenzen:',
+                    broken_case3_conseq_text: '15 kritische Fehler blieben unbemerkt, was zu einem massiven Zusammenbruch nach dem Live-Gang führte',
+                    broken_case3_result: '💀 Verluste: Zwei weitere Monate für Fehlerbehebungen, Startfenster verpasst, finanzielle Verluste über 500 Tsd. Rubel'
+                }
+            };
+
+            // ===== Функция переключения языка =====
+            function setLanguage(lang) {
+                // Обновляем активную кнопку
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+
+                // Проходим по всем элементам с атрибутом data-i18n
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.dataset.i18n;
+                    if (translations[lang] && translations[lang][key]) {
+                        if (key === 'hero_title') {
+                            el.innerHTML = translations[lang][key];
+                        } else {
+                            el.textContent = translations[lang][key];
+                        }
+                    }
+                });
+
+                // Обновляем текст на интерактивной кнопке, если она существует
+                const bugBtn = document.getElementById('bug-toggle');
+                if (bugBtn) {
+                    const isBroken = document.body.classList.contains('qa-broken');
+                    bugBtn.textContent = isBroken ? translations[lang].bug_btn_hide : translations[lang].bug_btn_show;
+                }
+
+                // Если сейчас показаны "сломанные" кейсы, обновляем их содержимое
+                if (document.body.classList.contains('qa-broken')) {
+                    const casesContainer = document.querySelector('.section-alt .container');
+                    if (casesContainer) {
+                        casesContainer.innerHTML = buildBrokenCasesHTML(lang);
+                    }
+                }
+
+                // Сохраняем текущий язык для использования в других функциях
+                window.currentLang = lang;
+            }
+
+            // Строим HTML для "сломанных" кейсов на нужном языке
+            function buildBrokenCasesHTML(lang) {
+                const t = translations[lang];
+                return `
+                    <h2 style="color: #dc2626; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);">${t.broken_title}</h2>
+                    <div class="cases-grid">
+                        <div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+                            <span class="tag" style="background: #fecaca; color: #dc2626;">${t.broken_tag}</span>
+                            <h3>${t.broken_case1_title}</h3>
+                            <p><strong>${t.broken_case1_what}</strong> ${t.broken_case1_desc}</p>
+                            <p><strong>${t.broken_case1_conseq}</strong> ${t.broken_case1_conseq_text}</p>
+                            <div class="result" style="color: #dc2626;">${t.broken_case1_result}</div>
+                        </div>
+                        <div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+                            <span class="tag" style="background: #fecaca; color: #dc2626;">${t.broken_tag}</span>
+                            <h3>${t.broken_case2_title}</h3>
+                            <p><strong>${t.broken_case2_what}</strong> ${t.broken_case2_desc}</p>
+                            <p><strong>${t.broken_case2_conseq}</strong> ${t.broken_case2_conseq_text}</p>
+                            <div class="result" style="color: #dc2626;">${t.broken_case2_result}</div>
+                        </div>
+                        <div class="case-card" style="border-color: #dc2626; background: #fef2f2;">
+                            <span class="tag" style="background: #fecaca; color: #dc2626;">${t.broken_tag}</span>
+                            <h3>${t.broken_case3_title}</h3>
+                            <p><strong>${t.broken_case3_what}</strong> ${t.broken_case3_desc}</p>
+                            <p><strong>${t.broken_case3_conseq}</strong> ${t.broken_case3_conseq_text}</p>
+                            <div class="result" style="color: #dc2626;">${t.broken_case3_result}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Обработчики для кнопок языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.dataset.lang;
+                    setLanguage(lang);
+                });
+            });
+
+            // ===== ЛОГИКА КНОПКИ "БЕЗ QA" =====
+            // Создаем кнопку
+            const bugButton = document.createElement('div');
+            bugButton.id = 'bug-toggle';
+            bugButton.innerHTML = '🐛 Показать, что было бы без QA';
+            bugButton.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                z-index: 9999;
+                background: #ef4444;
+                color: white;
+                padding: 16px 28px;
+                border-radius: 50px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 1rem;
+                box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+                transition: all 0.3s ease;
+                border: none;
+                font-family: 'Inter', sans-serif;
+                animation: pulse-button 2s infinite;
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse-button {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                }
+                #bug-toggle:hover {
+                    transform: scale(1.1) !important;
+                    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.6) !important;
+                    animation: none !important;
+                }
+                .qa-broken {
+                    transition: all 0.5s ease !important;
+                }
+                .qa-broken img {
+                    filter: grayscale(100%) blur(2px) !important;
+                    transform: rotate(2deg) scale(0.95) !important;
+                    transition: all 0.5s ease !important;
+                }
+                .qa-broken h1, .qa-broken h2, .qa-broken h3 {
+                    font-family: 'Comic Sans MS', cursive !important;
+                    color: #dc2626 !important;
+                    text-shadow: 2px 2px 0 #000 !important;
+                    transform: skewX(-3deg) !important;
+                }
+                .qa-broken p {
+                    color: #6b7280 !important;
+                    opacity: 0.7 !important;
+                }
+                .qa-broken .btn {
+                    pointer-events: none !important;
+                    opacity: 0.5 !important;
+                    transform: scale(0.9) !important;
+                }
+                .qa-broken .skill-card {
+                    border: 3px dashed #ef4444 !important;
+                    background: #fef2f2 !important;
+                    transform: rotate(-1deg) !important;
+                }
+                .qa-broken .case-card {
+                    border: 3px dashed #ef4444 !important;
+                    background: #fef2f2 !important;
+                }
+                .qa-broken .hero {
+                    background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%) !important;
+                }
+                .qa-broken .hero h1 {
+                    color: #fca5a5 !important;
+                }
+                .qa-broken .hero p {
+                    color: #fecaca !important;
+                }
+                .qa-broken .hero-stats .number {
+                    color: #ef4444 !important;
+                    animation: blink-error 1s infinite !important;
+                }
+                @keyframes blink-error {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.3; }
+                }
+                .qa-broken a {
+                    color: #dc2626 !important;
+                    text-decoration: line-through !important;
+                }
+                .qa-broken .contact-links a {
+                    background: rgba(220, 38, 38, 0.2) !important;
+                    border: 1px solid #ef4444 !important;
+                }
+                .qa-broken .testimonial-card {
+                    border-left: 5px solid #ef4444 !important;
+                    background: #fef2f2 !important;
+                }
+                .qa-broken .soft-item {
+                    border: 2px dashed #ef4444 !important;
+                    background: #fef2f2 !important;
+                }
+                .qa-broken .skill-card ul li::before {
+                    content: '✗' !important;
+                    color: #ef4444 !important;
+                }
+                .qa-broken .section-alt {
+                    background: #fef2f2 !important;
+                }
+                .qa-broken .hero-photo img {
+                    border: 4px solid #ef4444 !important;
+                    filter: grayscale(100%) contrast(200%) !important;
+                }
+                .qa-broken .case-card .tag {
+                    background: #fecaca !important;
+                    color: #dc2626 !important;
+                }
+                .qa-broken .case-card .result {
+                    color: #dc2626 !important;
+                    border-top-color: #fecaca !important;
+                }
+                .qa-broken .case-card .result span {
+                    color: #991b1b !important;
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(bugButton);
+
+            let isBroken = false;
+            const casesSection = document.querySelector('.section-alt .container');
+            const originalCasesHTML = casesSection ? casesSection.innerHTML : '';
+
+            // Устанавливаем язык по умолчанию
+            window.currentLang = 'ru';
+
+            bugButton.addEventListener('click', function() {
+                isBroken = !isBroken;
+                const lang = window.currentLang || 'ru';
+                const t = translations[lang];
+
+                if (isBroken) {
+                    document.body.classList.add('qa-broken');
+                    bugButton.textContent = t.bug_btn_hide;
+                    bugButton.style.background = '#10b981';
+                    bugButton.style.boxShadow = '0 8px 24px rgba(16, 185, 129, 0.4)';
+                    if (casesSection) casesSection.innerHTML = buildBrokenCasesHTML(lang);
+                    showFloatingBugs();
+                } else {
+                    document.body.classList.remove('qa-broken');
+                    bugButton.textContent = t.bug_btn_show;
+                    bugButton.style.background = '#ef4444';
+                    bugButton.style.boxShadow = '0 8px 24px rgba(239, 68, 68, 0.4)';
+                    if (casesSection) casesSection.innerHTML = originalCasesHTML;
+                    removeFloatingBugs();
+                }
+            });
+
+            function showFloatingBugs() {
+                const bugs = ['💥 404', '⚠️ CRITICAL', '🐞 BUG', '❗️ ERROR', '💀 NULL', '🔥 500', '⚠️ WARNING', '💢 FAIL', '💰 LOST', '💸 MONEY', '📉 METRICS', '🚫 DEADLINE'];
+                for (let i = 0; i < 15; i++) {
+                    const bug = document.createElement('div');
+                    bug.className = 'floating-bug';
+                    bug.textContent = bugs[Math.floor(Math.random() * bugs.length)];
+                    bug.style.cssText = `
+                        position: fixed;
+                        z-index: 9998;
+                        font-weight: 800;
+                        font-size: ${14 + Math.random() * 20}px;
+                        color: #ef4444;
+                        background: rgba(239, 68, 68, 0.1);
+                        padding: 6px 14px;
+                        border-radius: 8px;
+                        border: 2px solid #ef4444;
+                        pointer-events: none;
+                        animation: float-bug ${3 + Math.random() * 4}s ease-in-out infinite;
+                        left: ${Math.random() * 90}%;
+                        top: ${Math.random() * 90}%;
+                        opacity: 0.8;
+                        transform: rotate(${Math.random() * 30 - 15}deg);
+                    `;
+                    document.body.appendChild(bug);
+                }
+                const bugStyle = document.createElement('style');
+                bugStyle.id = 'bug-animation-style';
+                bugStyle.textContent = `
+                    @keyframes float-bug {
+                        0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+                        25% { transform: translateY(-30px) rotate(5deg); opacity: 1; }
+                        50% { transform: translateY(0) rotate(-5deg); opacity: 0.6; }
+                        75% { transform: translateY(20px) rotate(3deg); opacity: 0.9; }
+                    }
+                `;
+                document.head.appendChild(bugStyle);
+            }
+
+            function removeFloatingBugs() {
+                document.querySelectorAll('.floating-bug').forEach(el => el.remove());
+                const s = document.getElementById('bug-animation-style');
+                if (s) s.remove();
+            }
+        });
+    </script>
 </body>
 </html>
